@@ -5,7 +5,7 @@
 
 ##later we will implement google maps API to see who is online around you and choose you chat buddy on a map. We will also better the performance and looks of the chat GUI
 
-Go to root folder and open terminal (right click on the "chat-me-app" folder and open terminal)
+Go to root folder and open terminal
 
 in terminal you'll install the node modules
 
@@ -17,7 +17,7 @@ Then you can run it in the same directory using:
 
 //////////////////////////////////////////////////////
 
-id that doesn't work... open terminal from "chat-me-app" and run:
+id that doesn't work... open terminal and run:
 
 ``` npm run react ``` to start React dev server.
 
