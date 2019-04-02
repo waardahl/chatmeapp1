@@ -4,7 +4,7 @@ import { USER_CONNECTED, LOGOUT, VERIFY_USER } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
-const socketUrl = "http://localhost:3231"
+const socketUrl = "http://192.168.1.6:3231"
 export default class Layout extends Component {
 	
 	constructor(props) {
@@ -71,8 +71,6 @@ export default class Layout extends Component {
 
 
 	render() {
-		// eslint-disable-next-line
-		const { title } = this.props
 		const { socket, user } = this.state
 		return (
 			<div className="container">

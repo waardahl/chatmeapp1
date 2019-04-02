@@ -3,7 +3,10 @@
 
 ##is a chat app where you can create chat rooms and talk to people in real-time on the server. you can chat several people at the same time.
 
-##later we will implement google maps API to see who is online around you and choose you chat buddy on a map. We will also better the performance and looks of the chat GUI
+##later we will:
+#implement google maps API to see who is online around you and choose you chat buddy on a map. We will also better the performance and looks of the chat GUI.
+
+
 
 Go to root folder and open terminal
 

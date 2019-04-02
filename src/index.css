@@ -82,6 +82,30 @@ input,textarea{
     background:#15222b
 }
 
+
+#side-bar .side-bar-select{
+    background: #15222b;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding-bottom: 2px
+}
+
+#side-bar .side-bar-select__option{
+    background:#1f323f;
+    width:100%;height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer
+}
+
+#side-bar .side-bar-select__option.active{
+    background:#15222b;
+}
+
 #side-bar .search{
     background:#263844;
     box-sizing:border-box;
@@ -221,6 +245,7 @@ input,textarea{
     justify-content:center;
     font-size:2em
 }
+
 
 .chat-header{
     background:#15222b;
