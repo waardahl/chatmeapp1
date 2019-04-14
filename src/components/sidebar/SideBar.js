@@ -6,17 +6,19 @@ import { get, last, differenceBy } from 'lodash'
 import { createChatNameFromUsers } from '../../Factories'
 
 
+
 export default class SideBar extends Component {
 	static type = {
-		CHATS:"chats",
-		USERS:"users"
+		CHATS: "chats",
+		USERS: "users"
 	}
 	constructor(props) {
 		super(props)
 		this.state = {
 			reciever: "",
-			activeSideBar: SideBar.type.CHATS
+			activeSideBar: SideBar.type.CHATS,
 		}
+
 	}
 	handleSubmit = (e) => {
 		e.preventDefault()
@@ -25,20 +27,23 @@ export default class SideBar extends Component {
 
 		onSendPrivateMessage(reciever)
 		this.setState({ reciever: "" })
+
 	}
 	addChatForUser = (username) => {
 		this.props.onSendPrivateMessage(username)
 		this.setActiveSideBar(SideBar.type.CHATS)
 	}
-	setActiveSideBar = ( newSideBar ) => {
-		this.setState({ activeSideBar:newSideBar })
+	setActiveSideBar = (newSideBar) => {
+		this.setState({ activeSideBar: newSideBar })
+		this.props.triggerShowMap()
 	}
+
 
 	render() {
 		const { chats, activeChat, user, setActiveChat, logout, users } = this.props
 		const { reciever, activeSideBar } = this.state
 		return (
-			<div id="side-bar">
+			<div id="side-bar" className="noscroll">
 				<div className="heading">
 					<div className="app-name">chatMe</div>
 					<div className="menu">
@@ -56,14 +61,15 @@ export default class SideBar extends Component {
 				</form>
 				<div className="side-bar-select">
 					<div
-						onClick={ ()=>{ this.setActiveSideBar(SideBar.type.CHATS) }}
-						className={`side-bar-select__option ${(activeSideBar === SideBar.type.CHATS) ? 'active':'' }`}>
+						onClick={() => { this.setActiveSideBar(SideBar.type.CHATS) }}
+						className={`side-bar-select__option ${(activeSideBar === SideBar.type.CHATS) ? 'active' : ''}`}>
 						<span>Chats</span>
 					</div>
 					<div
-						onClick={ ()=>{ this.setActiveSideBar(SideBar.type.USERS) }}
-						className={`side-bar-select__option ${(activeSideBar === SideBar.type.USERS)  ? 'active':'' }`}>
-						<span>Users</span>
+						onClick={() => { this.setActiveSideBar(SideBar.type.USERS) }}
+						className={`side-bar-select__option ${(activeSideBar === SideBar.type.USERS) ? 'active' : ''}`}>
+						<span >Users</span>
+
 					</div>
 				</div>
 				<div
@@ -72,38 +78,44 @@ export default class SideBar extends Component {
 					onClick={(e) => { (e.target === this.refs.user) && setActiveChat(null) }}>
 
 
-						{
+					{
 						activeSideBar === SideBar.type.CHATS ?
-						chats.map((chat) => {
-							if (chat.name) {
+							chats.map((chat) => {
+								if (chat.name) {
+									return (
+
+										console.log(users + user.name),
+										<SideBarOption
+											key={chat.id}
+											name={chat.isCommunity ? chat.name : createChatNameFromUsers(chat.users, user.name)}
+											lastMessage={get(last(chat.messages), 'message', '')}
+											// active={activeChat.id === chat.id}
+											onClick={() => { this.props.setActiveChat(chat) }}
+										/>
+
+
+
+
+									)
+								}
+
+								return null
+							})
+							:
+							differenceBy(users, [user], 'name').map((otherUser) => {
 								return (
-									console.log(users + user.name),
 									<SideBarOption
-										key={chat.id}
-										name={chat.isCommunity ? chat.name : createChatNameFromUsers(chat.users, user.name)}
-										lastMessage={get(last(chat.messages), 'message', '')}
-										active={activeChat.id === chat.id}
-										onClick={ () => { this.props.setActiveChat(chat) }}
+										key={otherUser.id}
+										name={otherUser.name}
+										onClick={() => { this.addChatForUser(otherUser.name) }}
+
 									/>
+
+
+
 								)
 							}
-
-							return null
-						}) 
-						:
-						differenceBy(users, [user], 'name').map((otherUser) => {
-							return (
-								<SideBarOption
-									key={otherUser.id}
-									name={otherUser.name}
-									onClick={ ()=>{ this.addChatForUser(otherUser.name) }}
-
-								/>
-
-
 							)
-						}
-						)
 					}
 
 				</div>

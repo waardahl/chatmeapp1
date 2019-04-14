@@ -28,7 +28,7 @@ export class MapContainer extends Component {
 
   render() {
     return (
-
+        
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         <Marker onClick={this.onMarkerClick} name={'current location'} />
         <InfoWindow
@@ -36,7 +36,7 @@ export class MapContainer extends Component {
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
         >
-          <div>
+          <div className="infoboxLocation">
             <h4>{this.state.selectedPlace.name}</h4>
           </div>
         </InfoWindow> 

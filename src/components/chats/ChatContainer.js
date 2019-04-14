@@ -19,7 +19,8 @@ export default class ChatContainer extends Component {
 		this.state = {
 			chats: [],
 			users: [],
-			activeChat: null
+			activeChat: null,
+			showMap: false
 		};
 	}
 
@@ -97,7 +98,7 @@ export default class ChatContainer extends Component {
 		const { chats } = this.state
 
 		const newChats = reset ? [chat] : [...chats, chat]
-		this.setState({ chats: newChats, activeChat: reset ? chat : this.state.activeChat })
+		this.setState({ chats: newChats })
 
 		const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`
 		const typingEvent = `${TYPING}-${chat.id}`
@@ -172,63 +173,108 @@ export default class ChatContainer extends Component {
 
 	setActiveChat = (activeChat) => {
 		this.setState({ activeChat })
+		this.setState({ showMap: false})
+
 	}
+
+	showMapUserClick = () => {
+		this.setState({showMap: true}, function () {
+			console.log(this.state.showMap)}
+			)
+
+		
+	}
+
 	render() {
 		const { user, logout } = this.props
-		const { chats, activeChat, users } = this.state
-		return (
-			<div className="container">
-				<SideBar
-					logout={logout}
-					chats={chats}
-					user={user}
-					users={users}
-					activeChat={activeChat}
-					setActiveChat={this.setActiveChat}
-					onSendPrivateMessage={this.sendOpenPrivateMessage}
-				/>
+		const { chats, activeChat, users, showMap } = this.state
+		
+
+		if (activeChat !== null && showMap === false) {
+			return (
+				<div className="container">
+					<SideBar
+						logout={logout}
+						chats={chats}
+						user={user}
+						users={users}
+						activeChat={activeChat}
+						setActiveChat={this.setActiveChat}
+						onSendPrivateMessage={this.sendOpenPrivateMessage}
+						triggerShowMap={this.showMapUserClick}
+					/>
+			
 				<div className="chat-room-container">
-					{
-						activeChat !== null ? (
-
-							<div className="chat-room">
-								<ChatHeading name={activeChat.name} />
-									<div className="row">
-										<div className="col">
-										{/* Lägg in karta här? */}
-										<MapContainer
-										/> 
-										</div>
-										<div className="col">
-										<Messages
-											messages={activeChat.messages}
-											user={user}
-											typingUsers={activeChat.typingUsers}
-										/>
-										</div>
-									</div>
-								<MessageInput
-									sendMessage={
-										(message) => {
-											this.sendMessage(activeChat.id, message)
-										}
-									}
-									sendTyping={
-										(isTyping) => {
-											this.sendTyping(activeChat.id, isTyping)
-										}
-									}
-								/>
-
-							</div>
-						) :
-							<div className="chat-room choose">
-								<h3>Choose a chat!</h3>
-							</div>
-					}
+					<div className="chat-room">
+						<ChatHeading 
+							name={activeChat.name} 
+						/>
+						<Messages
+							messages={activeChat.messages}
+							user={user}
+							typingUsers={activeChat.typingUsers}
+						/>
+						<MessageInput
+							sendMessage={
+								(message) => {
+									this.sendMessage(activeChat.id, message)
+								}
+							}
+							sendTyping={
+								(isTyping) => {
+									this.sendTyping(activeChat.id, isTyping)
+								}
+							}
+						/>
+					</div>
+				</div>
+				</div>
+			);
+		}
+		else if (showMap === true) {
+			return (
+				<div className="container">
+					<SideBar
+						logout={logout}
+						chats={chats}
+						user={user}
+						users={users}
+						activeChat={activeChat}
+						setActiveChat={this.setActiveChat}
+						onSendPrivateMessage={this.sendOpenPrivateMessage}
+						triggerShowMap={this.showMapUserClick}
+					/>
+				
+				<div className="chat-room-container">
+					<div className="chat-room choose">			
+						<MapContainer/>  
+					</div>
+				</div>
+				</div>
+			);
+		}
+		else {
+			return (		
+				<div className="container">
+					<SideBar
+						logout={logout}
+						chats={chats}
+						user={user}
+						users={users}
+						activeChat={activeChat}
+						setActiveChat={this.setActiveChat}
+						onSendPrivateMessage={this.sendOpenPrivateMessage}
+						triggerShowMap={this.showMapUserClick}
+					/>
+				<div className="chat-room-container">
+					<div className="chat-room choose">			
+						<MapContainer/>  
+					</div>
+				</div>
 				</div>
 
-			</div>
-		);
+			);
+		}
+
 	}
 }
