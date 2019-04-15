@@ -12,12 +12,10 @@ export class CurrentLocation extends React.Component {
   constructor(props) {
     super(props);
 
-    const { lat, lng } = this.props.initialCenter;
     this.state = {
-      currentLocation: {
-        lat: lat,
-        lng: lng
-      }
+      currentLocation: 
+        this.props.currentLocation
+      
     };
   }
   componentDidMount() {
@@ -30,10 +28,18 @@ export class CurrentLocation extends React.Component {
               lat: coords.latitude,
               lng: coords.longitude
             }
+            
           });
+          this.props.user.coordinates = {
+            lat: coords.latitude,
+            lng: coords.longitude
+          };
+
         });
       }
     }
+    
+    console.log(this.props.user);
     this.loadMap();
   }
 

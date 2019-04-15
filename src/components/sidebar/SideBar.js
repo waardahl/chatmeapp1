@@ -40,7 +40,7 @@ export default class SideBar extends Component {
 
 
 	render() {
-		const { chats, activeChat, user, setActiveChat, logout, users } = this.props
+		const { chats, user, setActiveChat, logout, users } = this.props
 		const { reciever, activeSideBar } = this.state
 		return (
 			<div id="side-bar" className="noscroll">

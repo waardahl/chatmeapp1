@@ -316,7 +316,8 @@ input,textarea{
 .thread-container{
     flex-grow:1;
     overflow-y:scroll;
-    position:relative
+    position:flex;
+    
 }
 
 .thread-container::-webkit-scrollbar-track{
@@ -336,7 +337,7 @@ input,textarea{
 .thread-container .thread{
     position:relative;
     width:100%;
-    min-height:800px;
+    min-height:100%;
     display:flex;
     flex-direction:column;
     justify-content:flex-end;

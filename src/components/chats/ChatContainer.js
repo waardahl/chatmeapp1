@@ -178,17 +178,13 @@ export default class ChatContainer extends Component {
 	}
 
 	showMapUserClick = () => {
-		this.setState({showMap: true}, function () {
-			console.log(this.state.showMap)}
+		this.setState({showMap: true}
 			)
-
-		
 	}
 
 	render() {
 		const { user, logout } = this.props
 		const { chats, activeChat, users, showMap } = this.state
-		
 
 		if (activeChat !== null && showMap === false) {
 			return (
@@ -247,7 +243,10 @@ export default class ChatContainer extends Component {
 				
 				<div className="chat-room-container">
 					<div className="chat-room choose">			
-						<MapContainer/>  
+						<MapContainer
+							user={user}
+							users={users}
+						/>  
 					</div>
 				</div>
 				</div>
@@ -268,7 +267,10 @@ export default class ChatContainer extends Component {
 					/>
 				<div className="chat-room-container">
 					<div className="chat-room choose">			
-						<MapContainer/>  
+						<MapContainer
+						user={user}
+						users={users}
+						/>  
 					</div>
 				</div>
 				</div>
