@@ -108,11 +108,7 @@ export default class SideBar extends Component {
 										key={otherUser.id}
 										name={otherUser.name}
 										onClick={() => { this.addChatForUser(otherUser.name) }}
-
 									/>
-
-
-
 								)
 							}
 							)
