@@ -79,7 +79,6 @@ export class MapContainer extends Component {
       <InfoWindow
         marker={this.state.activeMarker}
         visible={this.state.showingInfoWindow}
-        content={this.state.showChatButton}
         onClose={this.onClose}
       >
         <div className="infoboxLocation">
