@@ -7,7 +7,8 @@ export default class LoginForm extends Component {
 	
 	  this.state = {
 	  	nickname:"",
-	  	error:""
+		  error:"",
+		  currentPos: {}
 	  };
 	}
 
@@ -23,9 +24,14 @@ export default class LoginForm extends Component {
 
 	handleSubmit = (e)=>{
 		e.preventDefault()
+
 		const { socket } = this.props
 		const { nickname } = this.state
-		socket.emit(VERIFY_USER, nickname, this.setUser)
+		const { currentPos } = this.state
+
+		 
+
+		socket.emit(VERIFY_USER, nickname, currentPos, this.setUser)
 	}
 
 	handleChange = (e)=>{
@@ -36,8 +42,24 @@ export default class LoginForm extends Component {
 		this.setState({error})
 	}
 
+	setUserCoordinates = () => {
+		
+		if (navigator && navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(pos => {
+				   const coords = pos.coords;
+				   this.setState({
+					 currentPos: {
+					   lat: coords.latitude,
+					   lng: coords.longitude
+					 }	
+				   });
+				 });
+			   }
+	}
+
 	render() {	
-		const { nickname, error } = this.state
+		const { nickname, error } = this.state;
+		this.setUserCoordinates()
 		return (
 			<div className="login">
 				<form onSubmit={this.handleSubmit} className="login-form" >

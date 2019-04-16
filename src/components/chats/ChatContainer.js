@@ -183,9 +183,11 @@ export default class ChatContainer extends Component {
 	}
 
 	render() {
+
 		const { user, logout } = this.props
 		const { chats, activeChat, users, showMap } = this.state
-
+		console.log(user)
+		console.log(users)
 		if (activeChat !== null && showMap === false) {
 			return (
 				<div className="container">
@@ -246,7 +248,7 @@ export default class ChatContainer extends Component {
 						<MapContainer
 							user={user}
 							users={users}
-						/>  
+						/>    
 					</div>
 				</div>
 				</div>
@@ -270,7 +272,7 @@ export default class ChatContainer extends Component {
 						<MapContainer
 						user={user}
 						users={users}
-						/>  
+						/>    
 					</div>
 				</div>
 				</div>

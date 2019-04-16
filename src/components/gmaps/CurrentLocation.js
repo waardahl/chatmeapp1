@@ -20,26 +20,11 @@ export class CurrentLocation extends React.Component {
   }
   componentDidMount() {
     if (this.props.centerAroundCurrentLocation) {
-      if (navigator && navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(pos => {
-          const coords = pos.coords;
           this.setState({
-            currentLocation: {
-              lat: coords.latitude,
-              lng: coords.longitude
-            }
-            
+            currentLocation: this.props.user.coordinates
           });
-          this.props.user.coordinates = {
-            lat: coords.latitude,
-            lng: coords.longitude
-          };
-
-        });
-      }
     }
-    
-    console.log(this.props.user);
+  
     this.loadMap();
   }
 
