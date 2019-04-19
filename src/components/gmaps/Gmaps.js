@@ -25,7 +25,7 @@ export class MapContainer extends Component {
     for (var i = 0; i<users.length; i++) {
       if (users[i].name !== user.name) {
       table.push(
-        <Marker onClick={this.onMarkerClickTrue} name={"Here's you friend " + users[i].name } position = {users[i].coordinates} />
+        <Marker onClick={this.onMarkerClickTrue} name={"Here's you friend " + users[i].name } position = {users[i].coordinates} key = {i} />
 
       );} 
     }
@@ -59,10 +59,11 @@ export class MapContainer extends Component {
     }
   };
 
+
   showButtonInfoWindow = () => {
     let table = [];
     if (this.state.showChatButton === true) {
-      table.push(<button>Start baby chat</button>);
+      table.push(<button key={1}>Start baby chat</button>);
      }
      return table
   }
@@ -72,7 +73,7 @@ export class MapContainer extends Component {
 
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google} user={user} users={users} currentLocation = {this.state.currentLocation}>
-      <Marker onClick={this.onMarkerClickFalse} name={"you are here " + user.name } /> 
+      <Marker onClick={this.onMarkerClickFalse} name={"you are here " + user.name }  /> 
         {/* generates markers for other users */}
       {this.createMarkers()}
 

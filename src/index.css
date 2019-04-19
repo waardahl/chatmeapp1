@@ -38,13 +38,15 @@ input,textarea{
     color: #d0e3f5;
     background-color:rgb(0, 0, 0);
     border-bottom:solid 2px #d0e3f5;
-    transition:all .23s ease-in
+    transition:all .23s ease-in;
+    text-align: center;
 }
 
 .login-form input:focus{
     border-bottom:solid 2px #d0e3f5;
-    outline:none
+    outline:none;
 }
+
 
 .login-form .error{
     text-align:center;
@@ -52,6 +54,31 @@ input,textarea{
     padding:5px 10px;
     color:#c92c43
 }
+
+.centerit {
+    text-align: center;
+}
+
+.login-form .button{
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-align:center;
+    margin:5px 0;
+    padding:8px 2px;
+    background-color:#d0e3f500;
+    border: 2px solid #d0e3f5;
+    color: #d0e3f5;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    width: 50%;
+      
+}
+
+.login-form .button:hover {
+    background-color: #d0e3f5;
+    color: #263844;
+  }
 
 .container{
     color:#d0e3f5;
@@ -148,33 +175,17 @@ input,textarea{
 
 #side-bar .search input::placeholder{
     color:#d0e3f5;
-    opacity:.6
+    opacity:.6;
+    font-size: 120%
 }
 
 #side-bar .search .plus{
     display:inline-block;
     position:relative;
     cursor:pointer;
-    width:13px;
-    height:13px
-}
-    
-#side-bar .search .plus::after,#side-bar .search .plus::before{
-    content:'';
-    position:absolute;
-    background:#d0e3f5
-}
-
-#side-bar .search .plus::after{
-    width:16px;
-    height:2px;top:5px
-}
-
-#side-bar .search .plus::before{
-    width:2px;
-    height:16px;
-    top:-2px;
-    left:7px
+    width:23px;
+    height:25px;
+    font-size: 150%
 }
 
 #side-bar .users{
@@ -249,7 +260,7 @@ input,textarea{
     cursor:pointer;
     display:flex;
     justify-content:center;
-    font-size:2em
+    font-size:1.2em
 }
 
 

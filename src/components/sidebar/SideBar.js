@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import FaSearch from 'react-icons/lib/fa/search'
-// import MdEject from 'react-icons/lib/md/eject'
 import { SideBarOption } from './SideBarOption'
 import { get, last, differenceBy } from 'lodash'
 import { createChatNameFromUsers } from '../../Factories'
@@ -40,24 +38,21 @@ export default class SideBar extends Component {
 
 
 	render() {
-		const { chats, user, setActiveChat, logout, users } = this.props
+		const { chats, user, setActiveChat, logout, users} = this.props
 		const { reciever, activeSideBar } = this.state
 		return (
 			<div id="side-bar" className="noscroll">
 				<div className="heading">
 					<div className="app-name">chatMe</div>
-					<div className="menu">
-
-					</div>
+					<div className="menu"></div>
 				</div>
 				<form onSubmit={this.handleSubmit} className="search">
-					<i className="search-icon"></i>
 					<input
 						placeholder="Search"
 						type="text"
 						value={reciever}
 						onChange={(e) => { this.setState({ reciever: e.target.value }) }} />
-					<div className="plus"></div>
+					<input type="submit" className="plus" value="+" ></input>
 				</form>
 				<div className="side-bar-select">
 					<div
@@ -76,26 +71,21 @@ export default class SideBar extends Component {
 					className="users"
 					ref='users'
 					onClick={(e) => { (e.target === this.refs.user) && setActiveChat(null) }}>
-
-
 					{
 						activeSideBar === SideBar.type.CHATS ?
 							chats.map((chat) => {
 								if (chat.name) {
 									return (
-
 										console.log(users + user.name),
 										<SideBarOption
 											key={chat.id}
+											users={users}
+											chats={chats}
 											name={chat.isCommunity ? chat.name : createChatNameFromUsers(chat.users, user.name)}
 											lastMessage={get(last(chat.messages), 'message', '')}
-											// active={activeChat.id === chat.id}
+											//active={activeChat.id === chat.id}
 											onClick={() => { this.props.setActiveChat(chat) }}
 										/>
-
-
-
-
 									)
 								}
 
@@ -110,20 +100,17 @@ export default class SideBar extends Component {
 										onClick={() => { this.addChatForUser(otherUser.name) }}
 									/>
 								)
-							}
-							)
+							})
 					}
 
 				</div>
 				<div className="current-user">
 					<span>{user.name}</span>
 					<div onClick={() => { logout() }} title="Logout" className="logout">
-						<h6>log out</h6>
-						{/* <MdEject/>	 */}
+						<p>log out</p>
 					</div>
 				</div>
 			</div>
 		);
-
 	}
 }

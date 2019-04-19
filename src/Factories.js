@@ -8,13 +8,13 @@ const uuidv4 = require('uuid/v4')
 *	@param {object} 
 *		name {string}
 */
-const createUser = ({name = "", socketId = null, coordinates = {} } = {})=>(
+const createUser = ({ name = "", socketId = null, coordinates = {} } = {}) => (
 	{
-		id:uuidv4(),
+		id: uuidv4(),
 		name,
 		socketId,
 		coordinates
-		
+
 	}
 )
 
@@ -29,15 +29,14 @@ const createUser = ({name = "", socketId = null, coordinates = {} } = {})=>(
 *		message {string}
 *		sender {string}
 */
-const createMessage = ({message = "", sender = ""} = { })=>(
-		{
-			id:uuidv4(),
-			time:getTime(new Date(Date.now())),
-			message,
-			sender	
-		}
-
-	)
+const createMessage = ({ message = "", sender = "" } = {}) => (
+	{
+		id: uuidv4(),
+		time: getTime(new Date(Date.now())),
+		message,
+		sender
+	}
+)
 
 /*
 *	createChat
@@ -49,17 +48,15 @@ const createMessage = ({message = "", sender = ""} = { })=>(
 *	@param {object} 
 *		messages {Array.Message}
 *		name {string}
-*		users {Array.string}
-* 
+*		users {Array.string} 
 */
-const createChat = ({messages = [], name = "Community", users = [], isCommunity = false } = {})=>(
+const createChat = ({ messages = [], name = "Community", users = [], isCommunity = false } = {}) => (
 	{
-		id:uuidv4(),
-		
+		id: uuidv4(),
 		name: isCommunity ? "Community" : createChatNameFromUsers(users),
 		messages,
 		users,
-		typingUsers:[],
+		typingUsers: [],
 		isCommunity
 	}
 )
@@ -80,8 +77,8 @@ const createChatNameFromUsers = (users, excludedUser = "") => {
 *	@param date {Date}
 *	@return a string represented in 24hr time i.e. '11:30', '19:30'
 */
-const getTime = (date)=>{
-	return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
+const getTime = (date) => {
+	return `${date.getHours()}:${("0" + date.getMinutes()).slice(-2)}`
 }
 
 module.exports = {
