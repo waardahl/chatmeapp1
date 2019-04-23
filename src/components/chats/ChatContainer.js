@@ -186,8 +186,7 @@ export default class ChatContainer extends Component {
 
 		const { user, logout } = this.props
 		const { chats, activeChat, users, showMap } = this.state
-		console.log(user)
-		console.log(users)
+
 		if (activeChat !== null && showMap === false) {
 			return (
 				<div className="container">

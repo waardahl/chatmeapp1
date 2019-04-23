@@ -1,12 +1,11 @@
 
-##chat me
+## chat me
+## by Henrik Waardahl & Edward Lindén
 
-##is a chat app where you can create chat rooms and talk to people in real-time on the server. you can chat several people at the same time.
-
-##later we will:
-#implement google maps API to see who is online around you and choose you chat buddy on a map. We will also better the performance and looks of the chat GUI.
+## is a chat app where you can create chat rooms and talk to people in real-time on the server. You can chat with several people at the same time by creating a group chat or just talk to one friend. There's also a community chat where yo can talk to everyone connected. By searching for a user you can find them and start a chat with them too. Using google maps API you are also able to see who's online on a map and press their icon to see their name. 
 
 
+//////////////////////////////////////////////////////
 
 Go to root folder and open terminal
 
@@ -20,10 +19,4 @@ Then you can run it in the same directory using:
 
 //////////////////////////////////////////////////////
 
-id that doesn't work... open terminal and run:
 
-``` npm run react ``` to start React dev server.
-
-then open a new terminal and run 
-
-``` npm run server ``` to start NodeJS Socket.io server.

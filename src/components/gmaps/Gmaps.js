@@ -13,21 +13,22 @@ export class MapContainer extends Component {
       activeMarker: {},
       selectedPlace: {},
       currentLocation: this.props.user.coordinates
- 
-  };
-}
+
+    };
+  }
 
   createMarkers = () => {
     const { users } = this.props;
     const { user } = this.props;
     let table = [];
 
-    for (var i = 0; i<users.length; i++) {
+    for (var i = 0; i < users.length; i++) {
       if (users[i].name !== user.name) {
-      table.push(
-        <Marker onClick={this.onMarkerClickTrue} name={"Here's you friend " + users[i].name } position = {users[i].coordinates} key = {i} />
+        table.push(
+          <Marker onClick={this.onMarkerClickTrue} name={"Here's you friend " + users[i].name} position={users[i].coordinates} key={i} />
 
-      );} 
+        );
+      }
     }
     return table
   }
@@ -63,38 +64,35 @@ export class MapContainer extends Component {
   showButtonInfoWindow = () => {
     let table = [];
     if (this.state.showChatButton === true) {
-      table.push(<button key={1}>Start baby chat</button>);
-     }
-     return table
+      table.push(<button key={1}>Start chat (function unavailable)</button>);
+    }
+    return table
   }
 
   render() {
     const { user, users } = this.props;
 
     return (
-      <CurrentLocation centerAroundCurrentLocation google={this.props.google} user={user} users={users} currentLocation = {this.state.currentLocation}>
-      <Marker onClick={this.onMarkerClickFalse} name={"you are here " + user.name }  /> 
+      <CurrentLocation centerAroundCurrentLocation google={this.props.google} user={user} users={users} currentLocation={this.state.currentLocation}>
+        <Marker onClick={this.onMarkerClickFalse} name={"You are here " + user.name} />
         {/* generates markers for other users */}
-      {this.createMarkers()}
+        {this.createMarkers()}
 
-      <InfoWindow
-        marker={this.state.activeMarker}
-        visible={this.state.showingInfoWindow}
-        onClose={this.onClose}
-      >
-        <div className="infoboxLocation">
-          <h4>{this.state.selectedPlace.name}</h4>
-          {/* onClick={this.addChatForUser(otherUser.name)} */}
-
-          {this.showButtonInfoWindow()}
-
-        </div>
-      </InfoWindow> 
-    </CurrentLocation>
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+          <div className="infoboxLocation">
+            <h4>{this.state.selectedPlace.name}</h4>
+            {/* onClick={this.addChatForUser(otherUser.name)} */}
+            {this.showButtonInfoWindow()}
+          </div>
+        </InfoWindow>
+      </CurrentLocation>
     );
   }
 }
-
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyAvuy-sA7Rllb8GKEsLNpcw5OAd4ff8ecc'

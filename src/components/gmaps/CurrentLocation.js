@@ -7,24 +7,25 @@ const mapStyles = {
     width: '69.3%',
     height: '100%'
   }
-};
+}
+
 export class CurrentLocation extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentLocation: 
+      currentLocation:
         this.props.currentLocation
-      
+
     };
   }
+
   componentDidMount() {
     if (this.props.centerAroundCurrentLocation) {
-          this.setState({
-            currentLocation: this.props.user.coordinates
-          });
+      this.setState({
+        currentLocation: this.props.user.coordinates
+      });
     }
-  
     this.loadMap();
   }
 
@@ -42,7 +43,6 @@ export class CurrentLocation extends React.Component {
       // checks if google is available
       const { google } = this.props;
       const maps = google.maps;
-
       const mapRef = this.refs.map;
 
       // reference to the actual DOM element
@@ -58,7 +58,7 @@ export class CurrentLocation extends React.Component {
           zoom: zoom
         }
       );
-      // maps.Map() is constructor that instantiates the map
+      // maps.Map() is a constructor that instantiates the map
       this.map = new maps.Map(node, mapConfig);
     }
   }
@@ -104,6 +104,7 @@ export class CurrentLocation extends React.Component {
     );
   }
 }
+
 export default CurrentLocation;
 
 CurrentLocation.defaultProps = {

@@ -3,29 +3,28 @@ import PropTypes from 'prop-types'
 
 
 export class SideBarOption extends Component {
-  static propTypes = {
-      name: PropTypes.string.isRequired,
-      chats: PropTypes.array.isRequired,
-      lastMessage: PropTypes.string,
-      active: PropTypes.bool,
-      onClick: PropTypes.func
-  }
+    static propTypes = {
+        name: PropTypes.string.isRequired,
+        lastMessage: PropTypes.string,
+        active: PropTypes.bool,
+        onClick: PropTypes.func
+    }
 
-  static defaultProps = {
-      lastMessage: "",
-      active: false,
-      
-      onClick: () => {}
-  }
+    static defaultProps = {
+        lastMessage: "",
+        active: false,
+
+        onClick: () => { }
+    }
 
     render() {
-        const { chats, name, lastMessage, active, onClick } = this.props
-        console.log(chats)
-        if (name !== "Empty Users" || chats.name !== name ){
+        const { name, lastMessage, active, onClick } = this.props
+
+        if (name !== "Empty Users") {
             return (
                 <div
-                    className={`user ${active ? 'active': ''}`}
-                    onClick={ onClick }
+                    className={`user ${active ? 'active' : ''}`}
+                    onClick={onClick}
                 >
                     <div className="user-photo">{name[0].toUpperCase()}</div>
                     <div className="user-info">
@@ -35,7 +34,7 @@ export class SideBarOption extends Component {
                 </div>
             );
 
-        }else{
+        } else {
             return (<></>);
         }
 

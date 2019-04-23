@@ -78,6 +78,7 @@ input,textarea{
 .login-form .button:hover {
     background-color: #d0e3f5;
     color: #263844;
+    cursor:pointer
   }
 
 .container{

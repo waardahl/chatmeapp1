@@ -4,7 +4,6 @@ import { get, last, differenceBy } from 'lodash'
 import { createChatNameFromUsers } from '../../Factories'
 
 
-
 export default class SideBar extends Component {
 	static type = {
 		CHATS: "chats",
@@ -16,8 +15,8 @@ export default class SideBar extends Component {
 			reciever: "",
 			activeSideBar: SideBar.type.CHATS,
 		}
-
 	}
+
 	handleSubmit = (e) => {
 		e.preventDefault()
 		const { reciever } = this.state
@@ -30,15 +29,15 @@ export default class SideBar extends Component {
 	addChatForUser = (username) => {
 		this.props.onSendPrivateMessage(username)
 		this.setActiveSideBar(SideBar.type.CHATS)
+		
 	}
 	setActiveSideBar = (newSideBar) => {
 		this.setState({ activeSideBar: newSideBar })
 		this.props.triggerShowMap()
 	}
 
-
 	render() {
-		const { chats, user, setActiveChat, logout, users} = this.props
+		const { chats, user, setActiveChat, logout, users } = this.props
 		const { reciever, activeSideBar } = this.state
 		return (
 			<div id="side-bar" className="noscroll">
@@ -76,7 +75,6 @@ export default class SideBar extends Component {
 							chats.map((chat) => {
 								if (chat.name) {
 									return (
-										console.log(users + user.name),
 										<SideBarOption
 											key={chat.id}
 											users={users}
